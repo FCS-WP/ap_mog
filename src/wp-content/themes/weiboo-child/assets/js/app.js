@@ -8,13 +8,13 @@ jQuery(document).ready(function ($) {
 
     // Send AJAX request to change currency
     $.ajax({
-      url: '<?php echo admin_url("admin-ajax.php"); ?>',
+      url: '/wp-admin/admin-ajax.php',
       method: "POST",
-      contentType: "application/json",
-      data: JSON.stringify({
+      dataType: "json",
+      data: {
         action: "change_currency",
         currency: title, // Use the title for the currency
-      }),
+      },
       success: function (data) {
         if (data.success) {
           location.reload(); // Reload the page to show updated prices
@@ -22,4 +22,6 @@ jQuery(document).ready(function ($) {
       },
     });
   });
+  // Set the initial active currency based on the current currency
 });
+
